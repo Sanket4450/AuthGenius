@@ -1,7 +1,7 @@
 const dbRepo = require('./DBDataProvider')
 
 class ResourceRepo {
-    constructor() {}
+    constructor() { }
 
     findOne(collection, queryObject) {
         return new Promise((resolve, reject) => {
@@ -20,6 +20,19 @@ class ResourceRepo {
         return new Promise((resolve, reject) => {
             dbRepo
                 .create(collection, queryObject)
+                .then(data => {
+                    resolve(data)
+                })
+                .catch(err => {
+                    reject(err)
+                })
+        })
+    }
+
+    updateOne(collection, queryObject) {
+        return new Promise((resolve, reject) => {
+            dbRepo
+                .updateOne(collection, queryObject)
                 .then(data => {
                     resolve(data)
                 })

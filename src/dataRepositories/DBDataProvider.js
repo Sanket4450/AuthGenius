@@ -26,6 +26,19 @@ class DbDataProvider {
                 })
         })
     }
+
+    updateOne(collectionName, queryObject) {
+        return new Promise((resolve, reject) => {
+            domain[collectionName]
+                .updateOne(queryObject.query, queryObject.data)
+                .then(results => {
+                    resolve(results)
+                })
+                .catch(error => {
+                    reject(error)
+                })
+        })
+    }
 }
 
 module.exports = new DbDataProvider()

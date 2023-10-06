@@ -7,7 +7,7 @@ const httpStatus = require('http-status')
 const uuid = require('uuid').v4
 
 const domain = require('./src/models/index.model')
-const errorMiddleware = require('./src/middlewares/error')
+const errorhandler = require('./src/middlewares/error')
 const connectDatabase = require('./src/config/db')
 const ErrorHandler = require('./src/utils/errorhandler')
 
@@ -42,6 +42,6 @@ app.use((req, res, next) => {
     next(new ErrorHandler('Route not Found', httpStatus.NOT_FOUND))
 })
 
-app.use(errorMiddleware)
+app.use(errorhandler)
 
 module.exports = app

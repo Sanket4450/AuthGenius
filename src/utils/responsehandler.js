@@ -1,6 +1,6 @@
 function sendSuccess (res, status, data = [], message) {
     return res.status(status).json({
-        success: true,
+        type: "success",
         message: message || 'OK',
         results: data
     })

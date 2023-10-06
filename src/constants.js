@@ -8,9 +8,14 @@ const VARIABLES = {
 }
 
 const MESSAGES = {
-    USER_ALREADY_EXISTS: "User already exists with this email or mobile",
+    USER_ALREADY_EXISTS: "User already exists with this Email",
     INCORRECT_EMAIL: "Incorrect Email",
-    INCORRECT_PASSWORD: "Incorrect Password"
+    INCORRECT_PASSWORD: "Incorrect Password",
+    AUTHENTICATION_FAILED: "Authentication failed",
+    USER_NOT_FOUND: "User not found",
+    EMAIL_ALREADY_TAKEN: "Email already taken",
+    TOKEN_EXPIRED: 'Token expired',
+    DUPLICATE_VALUE: 'Duplicate value entered'
 }
 
 const COLLECTIONS = {

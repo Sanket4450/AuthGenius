@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const bcrypt = require('bcryptjs')
+const correctFields = require('./plugins/correctFields.plugin')
 
 const userSchema = new mongoose.Schema({
     fullname: {
@@ -13,11 +13,10 @@ const userSchema = new mongoose.Schema({
     //     type: Boolean
     // },
     mobile: {
-        type: Number,
-        unique: true
+        type: Number
     },
     password: {
-        type: String,
+        type: String
     },
     address: {
         type: String
@@ -33,7 +32,11 @@ const userSchema = new mongoose.Schema({
     }
 },
 {
-    timestamps: true
+    timestamps: true,
+    autoIndex: false
 })
+
+// Apply the plugin to your schema
+userSchema.plugin(correctFields);
 
 module.exports = mongoose.model('User', userSchema)
