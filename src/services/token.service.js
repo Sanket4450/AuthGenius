@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const VARIABLES = require('../constants').VARIABLES
+const { VARIABLES } = require('../constants')
 
 const generateToken = ({ payload, secret, options }) => jwt.sign(payload, secret, options)
 
@@ -28,5 +28,6 @@ const generateAuthTokens = async (userId, role = 1) => {
 }
 
 module.exports = {
-    generateAuthTokens
+    generateAuthTokens,
+    generateToken
 }

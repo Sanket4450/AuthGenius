@@ -29,7 +29,37 @@ const login = {
     })
 }
 
+const token = {
+    body: Joi.object().keys({
+        token: stringReqValidation
+    })
+}
+
+const forgotPassword = {
+    body: Joi.object().keys({
+        email: emailValidation
+    })
+}
+
+const verifyResetOtp = {
+    body: Joi.object().keys({
+        token: stringReqValidation,
+        otp: integerNumberReqValidation
+    })
+}
+
+const resetPassword = {
+    body: Joi.object().keys({
+        token: stringReqValidation,
+        password: passwordValidation
+    })
+}
+
 module.exports = {
     signup,
-    login
+    login,
+    token,
+    forgotPassword,
+    verifyResetOtp,
+    resetPassword
 }

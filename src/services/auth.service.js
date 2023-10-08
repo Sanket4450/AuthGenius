@@ -1,8 +1,10 @@
 const httpStatus = require('http-status')
 const bcrypt = require('bcryptjs')
 const ErrorHandler = require("../utils/errorhandler")
-const MESSAGES = require('../constants').MESSAGES
+const { MESSAGES } = require('../constants')
+const { VARIABLES } = require('../constants')
 const userService = require('./user.service')
+const tokenService = require('./token.service')
 
 const checkUserWithEmail = async (email) => {
     console.log('Inside CheckuserWithEmail = ' + email)
@@ -36,7 +38,28 @@ const loginUserWithEmailAndPassword = async (email, password) => {
     return user
 }
 
+const forgotPassword = async (email) => {
+    console.log('Inside forgotPassword')
+
+    const user = await userService.getUserByEmail(email)
+
+    if (!user) {
+        throw new ErrorHandler(MESSAGES.USER_NOT_FOUND, httpStatus.NOT_FOUND)
+    }
+
+    const resetToken = tokenService.generateToken({
+        payload: { sub: user._id },
+        secret: VARIABLES.RESET_TOKEN_SECRET,
+        options: { expiresIn: VARIABLES.RESET_TOKEN_EXPIRY }
+    })
+
+    return {
+        resetToken
+    }
+}
+
 module.exports = {
     checkUserWithEmail,
-    loginUserWithEmailAndPassword
+    loginUserWithEmailAndPassword,
+    forgotPassword
 }

@@ -5,8 +5,16 @@ const authController = require('../controllers/auth.controller')
 
 const router = express.Router()
 
-router.route('/signup').post(validate(authValidation.signup), authController.signup)
+router.post('/signup', validate(authValidation.signup), authController.signup)
 
-router.route('/login').post(validate(authValidation.login), authController.login)
+router.post('/login', validate(authValidation.login), authController.login)
+
+router.post('/token', validate(authValidation.token), authController.generateToken)
+
+router.post('/forgot-password', validate(authValidation.forgotPassword), authController.forgotPassword)
+
+router.post('/verify-reset-otp', validate(authValidation.verifyResetOtp), authController.verifyResetOtp)
+
+router.put('/reset-password', validate(authValidation.resetPassword), authController.resetPassword)
 
 module.exports = router

@@ -2,8 +2,8 @@ const httpStatus = require('http-status')
 const bcrypt = require('bcryptjs')
 const resourceRepo = require('../dataRepositories/resourceRepo')
 const ErrorHandler = require('../utils/errorhandler')
-const COLLECTIONS = require('../constants').COLLECTIONS
-const MESSAGES = require('../constants').MESSAGES
+const { COLLECTIONS } = require('../constants')
+const { MESSAGES } = require('../constants')
 const User = require('../models/user.model')
 
 const getUserById = async (id) => {

@@ -1,5 +1,7 @@
-require('dotenv').config()
+const environment = process.env.NODE_ENV || 'development'
+const envFilePath = environment === 'production' ? '.env.production' : '.env.local'
 
+require('dotenv').config({ path: envFilePath })
 const express = require('express')
 const app = express()
 

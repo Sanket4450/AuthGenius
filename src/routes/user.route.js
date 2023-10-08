@@ -6,8 +6,7 @@ const authChecker = require('../middlewares/auth')
 
 const router = express.Router()
 
-router.route('/profile').get(authChecker, userController.getUser)
-
-router.route('/profile').put(authChecker, validate(userValidation.updateUser), userController.updateUser)
+router.get('/profile', authChecker, userController.getUser)
+router.put('/profile', authChecker, validate(userValidation.updateUser), userController.updateUser)
 
 module.exports = router
