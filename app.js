@@ -7,6 +7,7 @@ const app = express()
 
 const httpStatus = require('http-status')
 const uuid = require('uuid').v4
+const cors = require('cors')
 
 const domain = require('./src/models/index.model')
 const errorhandler = require('./src/middlewares/error')
@@ -28,6 +29,9 @@ app.use((req, res, next) => {
 
 global.domain = domain
 
+app.use(cors({
+    allowedHeaders: ['Origin', 'Authorization', 'Content-Type', 'Accept']
+}))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 

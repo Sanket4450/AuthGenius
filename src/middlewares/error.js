@@ -9,13 +9,9 @@ module.exports = (err, req, res, next) => {
 
     if (err.name === 'JsonWebTokenError') {
         err = new ErrorHandler(MESSAGES.AUTHENTICATION_FAILED, httpStatus.UNAUTHORIZED)
-    }
-
-    if (err.name === 'TokenExpiredError') {
+    } else if (err.name === 'TokenExpiredError') {
         err = new ErrorHandler(MESSAGES.TOKEN_EXPIRED, httpStatus.UNAUTHORIZED)
-    }
-
-    if (err.name === 'MongoServerError') {
+    } else if (err.name === 'MongoServerError') {
         err = new ErrorHandler(MESSAGES.DUPLICATE_VALUE, httpStatus.CONFLICT);
     }
 
